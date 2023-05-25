@@ -4,8 +4,10 @@ import { DealersComponent } from './dealers/dealers.component';
 import { VehiclesComponent } from './vehicles/vehicles.component';
 
 const routes: Routes = [
+  { path: '', component: DealersComponent },
   { path: 'dealers', component: DealersComponent },
-  { path: 'vehicles', component: VehiclesComponent }
+  { path: 'vehicles/:bac', component: VehiclesComponent },
+
 ];
 
 @NgModule({

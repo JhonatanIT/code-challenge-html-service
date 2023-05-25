@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 export interface PeriodicElement {
   bac: string;
@@ -87,8 +88,10 @@ export class DealersComponent {
   dataSource = ELEMENT_DATA;
   displayedColumns = this.columns.map(c => c.columnDef);
 
-  viewVehicles(row: any) {
-    console.log(row);
-  }
+  constructor(private router: Router) { }
+  ngOnInit(): void { }
 
+  viewVehicles(row: any) {
+    this.router.navigate(['/vehicles/' + row.bac]);
+  }
 }
