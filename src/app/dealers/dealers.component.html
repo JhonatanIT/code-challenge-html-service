@@ -1,0 +1,29 @@
+<mat-card class="card-general">
+  <mat-card-header>
+    <mat-card-title>List of dealers</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      class="mat-elevation-z8 mt-20"
+    >
+      <ng-container *ngFor="let column of columns" [matColumnDef]="column.columnDef">
+        <th mat-header-cell *matHeaderCellDef>
+          {{column.header}}
+        </th>
+        <td mat-cell *matCellDef="let row">
+          {{column.cell(row)}}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr
+        mat-row
+        (click)="viewVehicles(row)"
+        *matRowDef="let row; columns: displayedColumns"
+      ></tr>
+    </table>
+
+  </mat-card-content>
+</mat-card>

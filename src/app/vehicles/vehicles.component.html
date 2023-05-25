@@ -1,0 +1,35 @@
+<mat-card class="card-general">
+  <mat-card-header>
+    <mat-card-title>Vehicles - BAC {{ bac }}</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-grid-list cols="3" gutterSize="5" class="mt-20">
+      <mat-grid-tile *ngFor="let vehicle of vehicles">
+        <mat-card>
+          <img
+            mat-card-image
+            src="https://www.wardsauto.com/sites/wardsauto.com/files/Cadillac%20Celestiq%20front%201.4.jpg"
+            alt="Cadillac car"
+            style="width: 300px"
+          />
+          <mat-card-header>
+            <mat-card-title>
+              Stock number: {{ vehicle.stockNumber }}
+            </mat-card-title>
+            <mat-card-subtitle>VIN: {{ vehicle.vin }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <ul style="padding-left: 20px">
+              <li>CTP Status: {{ vehicle.ctpStatus }}</li>
+              <li>Onstar Status> {{ vehicle.onstarStatus }}</li>
+              <li>Create time: {{ vehicle.createdAt }}</li>
+              <li>Color: {{ vehicle.color }}</li>
+              <li>Year: {{ vehicle.year }}</li>
+            </ul>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card-content>
+</mat-card>
