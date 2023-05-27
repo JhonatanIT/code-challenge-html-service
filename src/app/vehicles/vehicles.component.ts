@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
+import { VehiclesService } from '../service/vehicles.service';
 
 @Component({
   selector: 'app-vehicles',
@@ -9,65 +10,25 @@ import { ActivatedRoute } from '@angular/router'
 export class VehiclesComponent implements OnInit {
 
   bac: string = '';
+  vehicles: any;
+  spinnerActivated: boolean = true;
 
-  vehicles = [
-    {
-      "bac": "122345",
-      "stockNumber": "12345",
-      "vin": "VIN00000000000000",
-      "ctpStatus": "IN-SERVICE",
-      "onstarStatus": "ONS-116",
-      "createdAt": "21/09/2018",
-      "color": "Black",
-      "year": 2018
-    },
-    {
-      "bac": "122345",
-      "stockNumber": "12345",
-      "vin": "VIN00000000000000",
-      "ctpStatus": "IN-SERVICE",
-      "onstarStatus": "ONS-116",
-      "createdAt": "21/09/2018",
-      "color": "Black",
-      "year": 2018
-    },
-    {
-      "bac": "122345",
-      "stockNumber": "12345",
-      "vin": "VIN00000000000000",
-      "ctpStatus": "IN-SERVICE",
-      "onstarStatus": "ONS-116",
-      "createdAt": "21/09/2018",
-      "color": "Black",
-      "year": 2018
-    },
-    {
-      "bac": "122345",
-      "stockNumber": "12345",
-      "vin": "VIN00000000000000",
-      "ctpStatus": "IN-SERVICE",
-      "onstarStatus": "ONS-116",
-      "createdAt": "21/09/2018",
-      "color": "Black",
-      "year": 2018
-    },
-    {
-      "bac": "122345",
-      "stockNumber": "12345",
-      "vin": "VIN00000000000000",
-      "ctpStatus": "IN-SERVICE",
-      "onstarStatus": "ONS-116",
-      "createdAt": "21/09/2018",
-      "color": "Black",
-      "year": 2018
-    }
-  ];
-
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private vehiclesService: VehiclesService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(param => {
       this.bac = param['bac'];
+      this.vehiclesService.getVehiclesByBac(this.bac)
+        .subscribe({
+          next: (res) => {
+            this.vehicles = res;
+            this.spinnerActivated = false;
+          },
+          error: (e) => {
+            this.vehicles = undefined;
+            this.spinnerActivated = false;
+          }
+        })
     })
   }
 

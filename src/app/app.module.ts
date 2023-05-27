@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialDesignModule } from './material-design/material-design.module';
+import { HttpClientModule } from '@angular/common/http';
+
 import { HeaderComponent } from './header/header.component';
 import { DealersComponent } from './dealers/dealers.component';
 import { VehiclesComponent } from './vehicles/vehicles.component';
@@ -21,6 +23,7 @@ import { FooterComponent } from './footer/footer.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialDesignModule

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { DealersService } from '../service/dealers.service';
 
 export interface PeriodicElement {
   bac: string;
@@ -9,42 +10,6 @@ export interface PeriodicElement {
   state: string;
   city: string
 }
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {
-    "bac": "122345",
-    "name": "Cadillac Detriot",
-    "city": "Detriot",
-    "state": "WV",
-    "country": "US",
-    "brand": "Cadillac"
-  },
-  {
-    "bac": "122346",
-    "name": "Buick Detriot",
-    "city": "Detriot",
-    "state": "WV",
-    "country": "US",
-    "brand": "Buick"
-  },
-  {
-    "bac": "122347",
-    "name": "GMC Detriot",
-    "city": "Detriot",
-    "state": "WV",
-    "country": "US",
-    "brand": "GMC"
-  },
-  {
-    "bac": "122348",
-    "name": "Buick New York",
-    "city": "New York",
-    "state": "WV",
-    "country": "US",
-    "brand": "Buick"
-  },
-
-];
 
 @Component({
   selector: 'app-dealers',
@@ -85,11 +50,11 @@ export class DealersComponent {
       cell: (element: PeriodicElement) => `${element.city}`,
     }
   ];
-  dataSource = ELEMENT_DATA;
+
+  dataSource = this.dealersService.getDealers();
   displayedColumns = this.columns.map(c => c.columnDef);
 
-  constructor(private router: Router) { }
-  ngOnInit(): void { }
+  constructor(private router: Router, private dealersService: DealersService) { }
 
   viewVehicles(row: any) {
     this.router.navigate(['/vehicles/' + row.bac]);
